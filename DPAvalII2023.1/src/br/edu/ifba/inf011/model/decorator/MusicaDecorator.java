@@ -4,10 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import br.edu.ifba.inf011.model.Musica;
-import br.edu.ifba.inf011.model.resources.ResourceLoader;
 
 public abstract class MusicaDecorator implements Musica{
-	
+	//Padrão de projeto decorator foi implementado 
 	protected Musica musica;
 	private List<String> letras;
 	private Integer linha;
@@ -17,7 +16,6 @@ public abstract class MusicaDecorator implements Musica{
 		super();
 		this.musica = musica;
 		this.nome = this.musica.getNome();
-		//letras = ResourceLoader.instance().loadLetra(this.musica.getNome());
 		this.reset();
 	}
 	
@@ -56,6 +54,12 @@ public abstract class MusicaDecorator implements Musica{
 	public void setLetras(List<String> letras) {
 		this.letras = letras;
 	}
+
+	public Integer getLinha() {
+		return linha;
+	}
+	
+	
 	
 	
 	

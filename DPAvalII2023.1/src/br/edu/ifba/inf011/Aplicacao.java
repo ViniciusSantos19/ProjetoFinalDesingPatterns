@@ -6,6 +6,7 @@ import br.edu.ifba.inf011.model.Musica;
 import br.edu.ifba.inf011.model.MusicaNotas;
 import br.edu.ifba.inf011.model.Player;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraDecorator;
+import br.edu.ifba.inf011.model.decorator.MusicaLetraTraducaoDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaTraducaoDecorator;
 import br.edu.ifba.inf011.model.resources.ResourceLoader;
 
@@ -17,9 +18,11 @@ public class Aplicacao{
 		//ResourceLoader.DIR_NAME = "D:\\workspace\\DPAvalII2023.1\\src\\br\\edu\\ifba\\inf011\\model\\resources\\data\\";
 		
 		Musica musica =  new MusicaLetraDecorator(new MusicaNotas("Lullaby"));
-		//Musica musicaTraduzida = new MusicaTraducaoDecorator(musica);
+		Musica musicaTraduzida = new MusicaTraducaoDecorator(musica);
 		
-		System.out.println(musica.execute());
+		Musica musicaCompleta  = new MusicaLetraTraducaoDecorator(musicaTraduzida);
+		
+		System.out.println(musicaCompleta.execute());
 		
 		
 	}

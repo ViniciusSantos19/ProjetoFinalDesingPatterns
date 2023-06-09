@@ -11,8 +11,6 @@ public class MusicaTraducaoDecorator extends MusicaDecorator{
 	public MusicaTraducaoDecorator(Musica musica) throws IOException {
 		super(musica);
 		this.setLetras(ResourceLoader.instance().loadTraducao(getNome()));
-	}
-
-	
+	}	
 
 }
