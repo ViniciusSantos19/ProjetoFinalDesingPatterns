@@ -1,6 +1,8 @@
 package br.edu.ifba.inf011.model;
 
-public interface Musica{
+import br.edu.ifba.inf011.model.composite.Component;
+
+public interface Musica extends  Component{
 	public String getNome();
 	public String execute();
 	public void reset();

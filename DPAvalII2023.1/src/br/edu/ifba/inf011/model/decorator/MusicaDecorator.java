@@ -29,8 +29,17 @@ public abstract class MusicaDecorator implements Musica{
 	public String execute() {
 		StringBuffer str = new StringBuffer();
 		this.reset();
-		while(!this.finish())
-			str.append(this.musica.play() + "\n"+ this.play() + "\n");
+		int size = this.letras.size();
+		str.append(this.getNome());
+		for(int i = 0; i < size; i++) {
+			if(!musica.finish()) {
+				str.append(musica.play()+"\n");
+			}
+			if(!this.finish()) {
+				str.append(this.play()+"\n");
+			}
+		}
+			
 		return str.toString();
 	}
 
@@ -58,9 +67,6 @@ public abstract class MusicaDecorator implements Musica{
 	public Integer getLinha() {
 		return linha;
 	}
-	
-	
-	
 	
 	
 }

@@ -22,17 +22,32 @@ public class MusicaLetraTraducaoDecorator extends MusicaDecorator{
 	public String execute() {
 		StringBuffer str = new StringBuffer();
 		this.reset();
-		while(!this.finish())
-			str.append(this.percorreNotas() + "\n"+ this.play() + "\n" + percorreTraducao() +"\n");
+		str.append(this.getNome()+"\n");
+		int size = Math.max(notas.size(), traducao.size());
+		for(int i = 0; i < size; i++) {
+			if(!isNotasFinished()) {
+				str.append(notas.get(i)+"\n");
+				
+			}
+			if(!this.finish()) {
+				str.append(this.play()+"\n");
+			}
+			
+			if(!this.percorreTraducao()) {
+				str.append(this.traducao.get(i)+"\n");
+			}
+		}
 		return str.toString();
 	}
 	
-	private String percorreTraducao() {
-		return this.traducao.get(this.getLinha()-1);
+	private Boolean percorreTraducao() {
+		return this.getLinha() >= this.traducao.size();
 	}
 	
-	private String percorreNotas() {
-		return this.notas.get(getLinha());
+	private Boolean isNotasFinished() {
+		return this.getLinha() >= this.notas.size();
 	}
+	
+	
 
 }

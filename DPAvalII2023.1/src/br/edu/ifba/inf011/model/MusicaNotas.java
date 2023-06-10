@@ -40,13 +40,11 @@ public class MusicaNotas implements Musica{
 	public String execute() {
 		StringBuffer str = new StringBuffer();
 		this.reset();
+		str.append(this.getNome()+"\n");
 		while(!this.finish())
 			str.append(this.play() + "\n");
 		return str.toString();	
 	}
 
-
-
 	
-
 }
