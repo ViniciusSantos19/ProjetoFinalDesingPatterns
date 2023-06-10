@@ -9,7 +9,6 @@ import br.edu.ifba.inf011.model.Playlist;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraTraducaoDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaTraducaoDecorator;
-import br.edu.ifba.inf011.model.resources.ResourceLoader;
 
 public class Aplicacao{
 
@@ -38,10 +37,18 @@ public class Aplicacao{
 		Musica musicaNotas = new MusicaNotas("ReelAroundFountain");
 		Musica musicaLetra = new MusicaLetraDecorator(musicaNotas);
 		Musica musica = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
+		Musica musicaDeNinar = new MusicaTraducaoDecorator(new MusicaNotas("Lullaby"));
 		player.insert(musica);
+		Playlist playlist2 = new Playlist("PLAYLIST TEST");
+		playlist2.insert(musicaDeNinar);
+		playlist2.insert(musicaLetra);
 		playlist.insert(musicaLetra);
-		//playlist.insert(musicaLetra);
+		playlist.insert(musicaDeNinar);
+		playlist.insert(playlist2);
 		player.insert(playlist);
+		player.insert(playlist2);
+		System.out.println(player.proximo());
+		System.out.println(player.proximo());
 		System.out.println(player.proximo());
 		//System.out.println(player.proximo());
 		/*while(!player.temProximo() && iCount < 30) {
@@ -53,8 +60,8 @@ public class Aplicacao{
 	
 	public static void main(String[] args) throws IOException{
 		Aplicacao app = new Aplicacao();
-		app.musica();
-		//app.teste();
+		//app.musica();
+		app.teste();
 	}
 
 

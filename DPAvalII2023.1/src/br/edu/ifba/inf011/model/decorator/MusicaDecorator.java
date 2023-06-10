@@ -30,7 +30,7 @@ public abstract class MusicaDecorator implements Musica{
 		StringBuffer str = new StringBuffer();
 		this.reset();
 		int size = this.letras.size();
-		str.append(this.getNome());
+		str.append(this.getNome()+"\n");
 		for(int i = 0; i < size; i++) {
 			if(!musica.finish()) {
 				str.append(musica.play()+"\n");

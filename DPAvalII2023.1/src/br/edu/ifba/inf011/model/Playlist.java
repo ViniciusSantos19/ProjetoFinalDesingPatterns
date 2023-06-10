@@ -6,6 +6,11 @@ import java.util.List;
 import br.edu.ifba.inf011.model.composite.Component;
 
 public class Playlist implements Component{
+	//Alteramos essa classe para que ela implemente
+	//a interface component assim tornando ela um
+	//componente composto do padrão composite.
+	//Também removemos a lista de playlist e a lista de múscia
+	//e deixamos apenas um lista de componente
 	
 	private String nome;
 	//private List<Musica> musicas;
@@ -17,15 +22,9 @@ public class Playlist implements Component{
 		//this.musicas = new ArrayList<Musica>();
 		//this.playlists = new ArrayList<Playlist>();
 		this.componente = new ArrayList<Component>();
-;;	}
-	
-	/*public void insert(Musica musica) {
-		this.musicas.add(musica);
 	}
 	
-	public void insert(Playlist playlist) {
-		this.playlists.add(playlist);
-	}*/
+	
 	
 	public void insert(Component component) {
 		this.componente.add(component);
