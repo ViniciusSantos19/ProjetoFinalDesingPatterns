@@ -7,6 +7,7 @@ import br.edu.ifba.inf011.model.composite.Component;
 import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
 import br.edu.ifba.inf011.model.iterator.PlayerAllMode;
 import br.edu.ifba.inf011.model.iterator.PlayerModeIterator;
+import br.edu.ifba.inf011.model.iterator.PlayerModeIteratorAbstract;
 import br.edu.ifba.inf011.model.iterator.RandomMode;
 import br.edu.ifba.inf011.model.iterator.RepeatAllMode;
 
@@ -14,7 +15,7 @@ public class Player {
 	
 	private List<Component> componentes;
 	private PlayerMode mode;
-	private PlayerModeIterator modo;
+	private PlayerModeIteratorAbstract modo;
 	
 	public Player() throws InvalidPlayerModeExption {
 		this.componentes= new ArrayList<Component>();
@@ -24,6 +25,7 @@ public class Player {
 	
 	public void insert(Component componente) {
 		this.componentes.add(componente);
+		this.modo.setComponents(componentes);
 	}
 
 	

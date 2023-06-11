@@ -34,31 +34,18 @@ public class Aplicacao{
 
 		//ResourceLoader.DIR_NAME = "D:\\workspace\\DPAvalII2023.1\\src\\br\\edu\\ifba\\inf011\\model\\resources\\data\\";
 		Player player = new Player();
-		int iCount = 0;
-		Playlist playlist = new Playlist("Musicas");
-		Musica musicaNotas = new MusicaNotas("ReelAroundFountain");
-		Musica musicaLetra = new MusicaLetraDecorator(musicaNotas);
-		Musica musica = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
-		Musica musicaDeNinar = new MusicaTraducaoDecorator(new MusicaNotas("Lullaby"));
+		Musica musica =  new MusicaLetraDecorator(new MusicaNotas("Lullaby"));
+		Musica musica2 = new MusicaTraducaoDecorator(new MusicaNotas("GodSaveTheQueen"));
+		Musica Musica3 = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
 		player.insert(musica);
-		Playlist playlist2 = new Playlist("PLAYLIST TEST");
-		playlist2.insert(musicaDeNinar);
-		playlist2.insert(musicaLetra);
-		playlist.insert(musicaLetra);
-		playlist.insert(musicaDeNinar);
-		player.insert(playlist);
-		player.insert(playlist2);
-		//System.out.println(playlist.randomize());
-		player.setMode(PlayerMode.PlayerAll);
-		player.setMode(PlayerMode.RandomMode);
+		player.insert(musica2);
+		player.insert(Musica3);
+		player.setMode(PlayerMode.RepeatAll);
 		System.out.println(player.proximo());
 		System.out.println(player.proximo());
-		//System.out.println(player.proximo());
-		/*while(!player.temProximo() && iCount < 30) {
-			System.out.println(player.proximo());
-			iCount++;
-		}*/
-		
+		System.out.println(player.proximo());
+		System.out.println(player.proximo());
+		System.out.println(player.proximo());
 	}
 	
 	public static void main(String[] args) throws IOException{
