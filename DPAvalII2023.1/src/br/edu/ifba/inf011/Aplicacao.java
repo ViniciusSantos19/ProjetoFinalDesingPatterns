@@ -5,10 +5,12 @@ import java.io.IOException;
 import br.edu.ifba.inf011.model.Musica;
 import br.edu.ifba.inf011.model.MusicaNotas;
 import br.edu.ifba.inf011.model.Player;
+import br.edu.ifba.inf011.model.PlayerMode;
 import br.edu.ifba.inf011.model.Playlist;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraTraducaoDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaTraducaoDecorator;
+import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
 
 public class Aplicacao{
 
@@ -28,7 +30,7 @@ public class Aplicacao{
 	}
 	
 	
-	private void teste() throws IOException {
+	private void teste() throws IOException, InvalidPlayerModeExption {
 
 		//ResourceLoader.DIR_NAME = "D:\\workspace\\DPAvalII2023.1\\src\\br\\edu\\ifba\\inf011\\model\\resources\\data\\";
 		Player player = new Player();
@@ -44,10 +46,11 @@ public class Aplicacao{
 		playlist2.insert(musicaLetra);
 		playlist.insert(musicaLetra);
 		playlist.insert(musicaDeNinar);
-		playlist.insert(playlist2);
 		player.insert(playlist);
 		player.insert(playlist2);
-		System.out.println(player.proximo());
+		//System.out.println(playlist.randomize());
+		player.setMode(PlayerMode.PlayerAll);
+		player.setMode(PlayerMode.RandomMode);
 		System.out.println(player.proximo());
 		System.out.println(player.proximo());
 		//System.out.println(player.proximo());
@@ -61,7 +64,15 @@ public class Aplicacao{
 	public static void main(String[] args) throws IOException{
 		Aplicacao app = new Aplicacao();
 		//app.musica();
-		app.teste();
+		try {
+			app.teste();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidPlayerModeExption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

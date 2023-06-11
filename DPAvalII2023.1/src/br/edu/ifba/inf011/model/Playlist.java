@@ -2,6 +2,7 @@ package br.edu.ifba.inf011.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import br.edu.ifba.inf011.model.composite.Component;
 
@@ -35,6 +36,21 @@ public class Playlist implements Component{
 	}
 	
 	public String randomize() {
+		if(this.componente.isEmpty()) {
+			return null;
+		}
+		
+		Random aleatorio = new Random();
+		int num = aleatorio.nextInt(this.componente.size());
+		Component componenteAleatorio = this.componente.get(num);
+		if(componenteAleatorio instanceof Musica) {
+			return componenteAleatorio.execute();
+		}else if(componenteAleatorio instanceof Playlist) {
+			 Playlist randomPlaylist = (Playlist) componenteAleatorio;
+			 return randomPlaylist.randomize();
+		}
+		
+		
 		return null;
 	}
 	

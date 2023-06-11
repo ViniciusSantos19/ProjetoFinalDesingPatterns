@@ -4,17 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf011.model.composite.Component;
+import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
+import br.edu.ifba.inf011.model.iterator.PlayerAllMode;
+import br.edu.ifba.inf011.model.iterator.PlayerModeIterator;
+import br.edu.ifba.inf011.model.iterator.RandomMode;
+import br.edu.ifba.inf011.model.iterator.RepeatAllMode;
 
 public class Player {
 	
 	private List<Component> componentes;
 	private PlayerMode mode;
-	private Integer index;
+	private PlayerModeIterator modo;
 	
-	public Player() {
+	public Player() throws InvalidPlayerModeExption {
+		this.componentes= new ArrayList<Component>();
 		this.setMode(PlayerMode.PlayerAll);
 		this.reset();
-		this.componentes= new ArrayList<Component>();
 	}
 	
 	public void insert(Component componente) {
@@ -23,20 +28,33 @@ public class Player {
 
 	
 	public boolean temProximo() {
-		return this.index >= this.componentes.size();
+		return this.modo.temProximo();
 	}
 	
 	public String proximo() {
-		return this.componentes.get(this.index++).execute();
+		return this.modo.proximo().execute();
 	}
 	
 	public void reset() {
-		this.index = 0;
+		this.modo.reset();
 	}
 	
-	public void setMode(PlayerMode mode) {
-		this.mode = mode;
+	public void setMode(PlayerMode mode) throws InvalidPlayerModeExption {
+		switch(mode) {
+		case PlayerAll:
+			this.modo = new PlayerAllMode(componentes);
+			break;
+		case RandomMode:
+			this.modo = new RandomMode(componentes);
+			break;
+		case RepeatAll:
+			this.modo = new RepeatAllMode(componentes);
+			break;
+			default:
+				throw new InvalidPlayerModeExption("PlayerMode invalido");
+		}
 	}
 	
 
 }
+ 
