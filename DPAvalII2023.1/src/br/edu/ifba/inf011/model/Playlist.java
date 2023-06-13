@@ -11,7 +11,8 @@ public class Playlist implements Component{
 	//a interface component assim tornando ela um
 	//componente composto do padrão composite.
 	//Também removemos a lista de playlist e a lista de múscia
-	//e deixamos apenas um lista de componente
+	//e deixamos apenas um lista de componentes, visto que música e playlist
+	//podem ser componentes
 	
 	private String nome;
 	//private List<Musica> musicas;

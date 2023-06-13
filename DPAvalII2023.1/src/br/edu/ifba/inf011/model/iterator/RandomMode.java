@@ -10,8 +10,11 @@ public class RandomMode extends PlayerModeIteratorAbstract{
 	
 	public RandomMode(List<Component> componentes) {
 		super(componentes);
-		Collections.shuffle(super.getComponents());
-		this.reset();
+	}
+	
+	public Component getCompenent() {
+		Collections.shuffle(getComponents());
+		return super.getCompenent();
 	}
 
 

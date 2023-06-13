@@ -5,27 +5,31 @@ import java.util.List;
 
 import br.edu.ifba.inf011.model.composite.Component;
 import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
-import br.edu.ifba.inf011.model.iterator.PlayerAllMode;
-import br.edu.ifba.inf011.model.iterator.PlayerModeIterator;
+import br.edu.ifba.inf011.model.iterator.ConcretePlayerModeColleciton;
+import br.edu.ifba.inf011.model.iterator.PlayerModeCollection;
 import br.edu.ifba.inf011.model.iterator.PlayerModeIteratorAbstract;
-import br.edu.ifba.inf011.model.iterator.RandomMode;
-import br.edu.ifba.inf011.model.iterator.RepeatAllMode;
+import br.edu.ifba.inf011.model.observer.PlayerModeObserver;
 
 public class Player {
 	
+	private List<PlayerModeObserver> observadores;
 	private List<Component> componentes;
-	private PlayerMode mode;
+	private PlayerMode mode = PlayerMode.PlayerAll;
 	private PlayerModeIteratorAbstract modo;
+	private PlayerModeCollection playerModeCollection;
 	
 	public Player() throws InvalidPlayerModeExption {
+		this.observadores = new ArrayList<PlayerModeObserver>();
 		this.componentes= new ArrayList<Component>();
-		this.setMode(PlayerMode.PlayerAll);
+		this.playerModeCollection = new ConcretePlayerModeColleciton(componentes);
+		this.adicionarObservador();
+		this.modo = playerModeCollection.getIterator();
 		this.reset();
 	}
 	
 	public void insert(Component componente) {
 		this.componentes.add(componente);
-		this.modo.setComponents(componentes);
+		this.playerModeCollection.setLista(componentes);;
 	}
 
 	
@@ -42,19 +46,13 @@ public class Player {
 	}
 	
 	public void setMode(PlayerMode mode) throws InvalidPlayerModeExption {
-		switch(mode) {
-		case PlayerAll:
-			this.modo = new PlayerAllMode(componentes);
-			break;
-		case RandomMode:
-			this.modo = new RandomMode(componentes);
-			break;
-		case RepeatAll:
-			this.modo = new RepeatAllMode(componentes);
-			break;
-			default:
-				throw new InvalidPlayerModeExption("PlayerMode invalido");
-		}
+		this.mode = mode;
+		this.observadores.forEach(a-> a.onModeChanged(mode));
+		this.modo = playerModeCollection.getIterator();
+	}
+	
+	private void adicionarObservador() {
+		this.observadores.add(playerModeCollection);
 	}
 	
 

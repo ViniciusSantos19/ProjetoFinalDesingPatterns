@@ -37,15 +37,16 @@ public class Aplicacao{
 		Musica musica =  new MusicaLetraDecorator(new MusicaNotas("Lullaby"));
 		Musica musica2 = new MusicaTraducaoDecorator(new MusicaNotas("GodSaveTheQueen"));
 		Musica Musica3 = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
+		player.setMode(PlayerMode.RandomMode);
 		player.insert(musica);
 		player.insert(musica2);
-		player.insert(Musica3);
-		player.setMode(PlayerMode.RepeatAll);
+		//player.insert(Musica3);
+		//player.setMode(PlayerMode.RepeatAll);
 		System.out.println(player.proximo());
 		System.out.println(player.proximo());
-		System.out.println(player.proximo());
-		System.out.println(player.proximo());
-		System.out.println(player.proximo());
+		//System.out.println(player.proximo());
+		//System.out.println(player.proximo());
+		//System.out.println(player.proximo());
 	}
 	
 	public static void main(String[] args) throws IOException{

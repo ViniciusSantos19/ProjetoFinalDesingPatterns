@@ -1,7 +1,8 @@
 package br.edu.ifba.inf011.model.observer;
 
+import br.edu.ifba.inf011.model.PlayerMode;
+import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
+
 public interface PlayerModeObserver {
-	public void addObserver(String playerModeChanged);
-	public void removeObserver(String playerModeChanged);
-	
+	 void onModeChanged(PlayerMode newMode);
 }
