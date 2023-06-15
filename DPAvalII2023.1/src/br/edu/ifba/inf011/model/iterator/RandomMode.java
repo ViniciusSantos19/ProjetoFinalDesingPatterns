@@ -1,8 +1,8 @@
 package br.edu.ifba.inf011.model.iterator;
 
-import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.List;
+import java.util.Random;
 
 import br.edu.ifba.inf011.model.composite.Component;
 
@@ -13,8 +13,9 @@ public class RandomMode extends PlayerModeIteratorAbstract{
 	}
 	
 	public Component getCompenent() {
-		Collections.shuffle(getComponents());
-		return super.getCompenent();
+		Random aleatorio = new Random();
+		Component component = this.getComponents().get(aleatorio.nextInt(getSize()));
+		return component;
 	}
 
 

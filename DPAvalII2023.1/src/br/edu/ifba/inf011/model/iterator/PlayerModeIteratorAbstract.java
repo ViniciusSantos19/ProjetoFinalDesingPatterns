@@ -1,6 +1,5 @@
 package br.edu.ifba.inf011.model.iterator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf011.model.composite.Component;
@@ -14,7 +13,7 @@ public abstract class PlayerModeIteratorAbstract implements PlayerModeIterator{
 	
 	public PlayerModeIteratorAbstract(List<Component> components) {
 		super();
-		this.components = new ArrayList<Component>(components);
+		this.components = components;
 		this.reset();
 	}
 
@@ -42,19 +41,24 @@ public abstract class PlayerModeIteratorAbstract implements PlayerModeIterator{
 		return component;
 	}
 
-	public List<Component> getComponents() {
-		return components;
-	}
-
 
 	public int getCurrentIndex() {
 		return currentIndex;
 	}
 
-	public void setComponents(List<Component> components) {
-		this.components = components;
-	}
 	
+
+	public int getSize() {
+		return this.components.size();
+	}
+
+	public List<Component> getComponents() {
+		return components;
+	}
+
+	public void setCurrentIndex(int currentIndex) {
+		this.currentIndex = currentIndex;
+	}
 	
 	
 

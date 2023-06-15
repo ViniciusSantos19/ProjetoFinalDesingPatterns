@@ -1,20 +1,25 @@
 package br.edu.ifba.inf011.model.iterator;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import br.edu.ifba.inf011.model.PlayerMode;
 import br.edu.ifba.inf011.model.composite.Component;
-import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
 
 public class ConcretePlayerModeColleciton implements PlayerModeCollection{
 	
+	private Map<PlayerMode, PlayerModeIteratorAbstract> mapaModos; 
 	private List<Component> lista; 
 	private PlayerModeIteratorAbstract modo;
 
-	public ConcretePlayerModeColleciton(List<Component> componentes) {
+	public ConcretePlayerModeColleciton() {
 		super();
-		this.modo = new PlayerAllMode(componentes);
-		this.lista = componentes;
+		this.lista = new ArrayList<Component>();
+		this.modo = new PlayerAllMode(lista);
+		this.mapaModos = new HashMap<PlayerMode, PlayerModeIteratorAbstract>();
+		this.iniciarMapa();
 	}
 
 
@@ -25,26 +30,23 @@ public class ConcretePlayerModeColleciton implements PlayerModeCollection{
 	}
 
 	@Override
-	public void setLista(List<Component> lista) {
-		this.modo.setComponents(lista);
+	public void setLista(Component component) {
+		this.lista.add(component);
 		
 	}
 
 
 	@Override
 	public void onModeChanged(PlayerMode newMode) {
-		switch(newMode) {
-		case PlayerAll:
-			this.modo = new PlayerAllMode(this.lista);
-			break;
-		case RandomMode:
-			this.modo = new RandomMode(this.lista);
-			break;
-		case RepeatAll:
-			this.modo = new RepeatAllMode(this.lista);
-			break;
-		}
-		
+		int indiceAtual = this.modo.getCurrentIndex();
+		this.modo = mapaModos.get(newMode);
+		this.modo.setCurrentIndex(indiceAtual);
+	}
+	
+	private void iniciarMapa() {
+		this.mapaModos.put(PlayerMode.PlayerAll, new PlayerAllMode(lista));
+		this.mapaModos.put(PlayerMode.RandomMode, new RandomMode(lista));
+		this.mapaModos.put(PlayerMode.RepeatAll, new RepeatAllMode(lista));
 	}
 	
 	

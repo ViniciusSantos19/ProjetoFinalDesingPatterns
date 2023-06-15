@@ -15,12 +15,11 @@ public class RepeatAllMode extends PlayerModeIteratorAbstract{
 
 
 	@Override
-	public Component proximo() {
-		if(this.temProximo()) {
-			this.reset();
-		}
-		return super.proximo();
-		
+	public Boolean temProximo() {
+	    if (this.getCurrentIndex() >= this.getSize()) {
+	        this.reset();
+	    }
+	    return this.getCurrentIndex() >= this.getSize();
 	}
 
 

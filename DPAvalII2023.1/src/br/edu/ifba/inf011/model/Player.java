@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf011.model.composite.Component;
-import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
 import br.edu.ifba.inf011.model.iterator.ConcretePlayerModeColleciton;
 import br.edu.ifba.inf011.model.iterator.PlayerModeCollection;
 import br.edu.ifba.inf011.model.iterator.PlayerModeIteratorAbstract;
@@ -13,23 +12,20 @@ import br.edu.ifba.inf011.model.observer.PlayerModeObserver;
 public class Player {
 	
 	private List<PlayerModeObserver> observadores;
-	private List<Component> componentes;
 	private PlayerMode mode = PlayerMode.PlayerAll;
 	private PlayerModeIteratorAbstract modo;
 	private PlayerModeCollection playerModeCollection;
 	
-	public Player() throws InvalidPlayerModeExption {
+	public Player()  {
 		this.observadores = new ArrayList<PlayerModeObserver>();
-		this.componentes= new ArrayList<Component>();
-		this.playerModeCollection = new ConcretePlayerModeColleciton(componentes);
+		this.playerModeCollection = new ConcretePlayerModeColleciton();
 		this.adicionarObservador();
 		this.modo = playerModeCollection.getIterator();
 		this.reset();
 	}
 	
 	public void insert(Component componente) {
-		this.componentes.add(componente);
-		this.playerModeCollection.setLista(componentes);;
+		this.playerModeCollection.setLista(componente);
 	}
 
 	
@@ -45,7 +41,7 @@ public class Player {
 		this.modo.reset();
 	}
 	
-	public void setMode(PlayerMode mode) throws InvalidPlayerModeExption {
+	public void setMode(PlayerMode mode){
 		this.mode = mode;
 		this.observadores.forEach(a-> a.onModeChanged(mode));
 		this.modo = playerModeCollection.getIterator();

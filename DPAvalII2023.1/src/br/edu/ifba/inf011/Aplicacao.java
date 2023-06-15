@@ -10,7 +10,6 @@ import br.edu.ifba.inf011.model.Playlist;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaLetraTraducaoDecorator;
 import br.edu.ifba.inf011.model.decorator.MusicaTraducaoDecorator;
-import br.edu.ifba.inf011.model.erros.InvalidPlayerModeExption;
 
 public class Aplicacao{
 
@@ -30,37 +29,33 @@ public class Aplicacao{
 	}
 	
 	
-	private void teste() throws IOException, InvalidPlayerModeExption {
+	private void teste() throws IOException{
 
 		//ResourceLoader.DIR_NAME = "D:\\workspace\\DPAvalII2023.1\\src\\br\\edu\\ifba\\inf011\\model\\resources\\data\\";
 		Player player = new Player();
 		Musica musica =  new MusicaLetraDecorator(new MusicaNotas("Lullaby"));
 		Musica musica2 = new MusicaTraducaoDecorator(new MusicaNotas("GodSaveTheQueen"));
-		Musica Musica3 = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
-		player.setMode(PlayerMode.RandomMode);
+		Musica musica3 = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
 		player.insert(musica);
 		player.insert(musica2);
 		//player.insert(Musica3);
 		//player.setMode(PlayerMode.RepeatAll);
-		System.out.println(player.proximo());
-		System.out.println(player.proximo());
-		//System.out.println(player.proximo());
+		player.insert(musica3);
+		//player.setMode(PlayerMode.RepeatAll);
+		int count = 0;
+		player.setMode(PlayerMode.RepeatAll);
+		while(!player.temProximo() && count < 30) {
+			System.out.println(player.proximo());
+			System.out.println(count);
+			count++;
+		}
 		//System.out.println(player.proximo());
 		//System.out.println(player.proximo());
 	}
 	
 	public static void main(String[] args) throws IOException{
 		Aplicacao app = new Aplicacao();
-		//app.musica();
-		try {
-			app.teste();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidPlayerModeExption e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		app.teste();
 	}
 
 

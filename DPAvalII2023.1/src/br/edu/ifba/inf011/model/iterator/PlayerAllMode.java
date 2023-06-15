@@ -1,6 +1,5 @@
 package br.edu.ifba.inf011.model.iterator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifba.inf011.model.composite.Component;
