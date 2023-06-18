@@ -22,7 +22,8 @@ public class Aplicacao{
 		Musica musicaTraduzida = new MusicaTraducaoDecorator(musica);
 		
 		Musica musicaCompleta  = new MusicaLetraTraducaoDecorator(musicaTraduzida);
-		
+		System.out.println(musica.execute());
+		System.out.println(musicaTraduzida.execute());
 		System.out.println(musicaCompleta.execute());
 		
 		
@@ -38,12 +39,9 @@ public class Aplicacao{
 		Musica musica3 = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
 		player.insert(musica);
 		player.insert(musica2);
-		//player.insert(Musica3);
-		//player.setMode(PlayerMode.RepeatAll);
 		player.insert(musica3);
-		//player.setMode(PlayerMode.RepeatAll);
 		int count = 0;
-		player.setMode(PlayerMode.RepeatAll);
+		player.setMode(PlayerMode.PlayerAll);
 		while(!player.temProximo() && count < 30) {
 			System.out.println(player.proximo());
 			System.out.println(count);
@@ -56,6 +54,7 @@ public class Aplicacao{
 	public static void main(String[] args) throws IOException{
 		Aplicacao app = new Aplicacao();
 		app.teste();
+		//app.musica();
 	}
 
 

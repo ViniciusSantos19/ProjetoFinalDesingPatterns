@@ -7,7 +7,7 @@ import java.util.Random;
 import br.edu.ifba.inf011.model.composite.Component;
 
 public class RandomMode extends PlayerModeIteratorAbstract{
-	
+	//implementação concreta da classe abstrata iterator
 	public RandomMode(List<Component> componentes) {
 		super(componentes);
 	}

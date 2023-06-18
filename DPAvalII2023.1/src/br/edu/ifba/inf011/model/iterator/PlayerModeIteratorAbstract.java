@@ -5,7 +5,9 @@ import java.util.List;
 import br.edu.ifba.inf011.model.composite.Component;
 
 public abstract class PlayerModeIteratorAbstract implements PlayerModeIterator{
-	
+	//classe abstrata que implementa a interface do iterator
+	//fizemos isso pois algumas partes do código estavam
+	//repetidas
 	private List<Component> components;
 	private int currentIndex;
 	

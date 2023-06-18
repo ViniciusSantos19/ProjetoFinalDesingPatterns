@@ -7,6 +7,7 @@ import br.edu.ifba.inf011.model.Musica;
 
 public abstract class MusicaDecorator implements Musica{
 	//Padrão de projeto decorator foi implementado 
+	//isso aqui é o decorator abstrato
 	protected Musica musica;
 	private List<String> letras;
 	private Integer linha;

@@ -6,7 +6,7 @@ import br.edu.ifba.inf011.model.Musica;
 import br.edu.ifba.inf011.model.resources.ResourceLoader;
 
 public class MusicaTraducaoDecorator extends MusicaDecorator{
-	
+	//parte concreta do decorator
 	
 	public MusicaTraducaoDecorator(Musica musica) throws IOException {
 		super(musica);

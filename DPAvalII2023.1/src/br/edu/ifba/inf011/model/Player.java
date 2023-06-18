@@ -8,9 +8,11 @@ import br.edu.ifba.inf011.model.iterator.ConcretePlayerModeColleciton;
 import br.edu.ifba.inf011.model.iterator.PlayerModeCollection;
 import br.edu.ifba.inf011.model.iterator.PlayerModeIteratorAbstract;
 import br.edu.ifba.inf011.model.observer.PlayerModeObserver;
+import br.edu.ifba.inf011.model.observer.Subject;
 
-public class Player {
-	
+public class Player implements Subject{
+	// Subject do padrao de projeto observer
+	//também possui um iterator
 	private List<PlayerModeObserver> observadores;
 	private PlayerMode mode = PlayerMode.PlayerAll;
 	private PlayerModeIteratorAbstract modo;
@@ -19,7 +21,7 @@ public class Player {
 	public Player()  {
 		this.observadores = new ArrayList<PlayerModeObserver>();
 		this.playerModeCollection = new ConcretePlayerModeColleciton();
-		this.adicionarObservador();
+		this.adicionarObservavel(playerModeCollection);;
 		this.modo = playerModeCollection.getIterator();
 		this.reset();
 	}
@@ -43,14 +45,26 @@ public class Player {
 	
 	public void setMode(PlayerMode mode){
 		this.mode = mode;
-		this.observadores.forEach(a-> a.onModeChanged(mode));
+		this.notifyObservaveis();
 		this.modo = playerModeCollection.getIterator();
 	}
-	
-	private void adicionarObservador() {
-		this.observadores.add(playerModeCollection);
+
+	@Override
+	public void adicionarObservavel(PlayerModeObserver observer) {
+		this.observadores.add(observer);
 	}
-	
+
+	@Override
+	public void removerObservavel(PlayerModeObserver observer) {
+		this.observadores.remove(observer);
+	}
+
+	@Override
+	public void notifyObservaveis() {
+		this.observadores.forEach(a-> a.onModeChanged(this.mode));
+		
+	}
+
 
 }
  

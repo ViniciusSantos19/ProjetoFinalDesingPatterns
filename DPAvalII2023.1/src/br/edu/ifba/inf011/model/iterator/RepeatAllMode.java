@@ -6,7 +6,7 @@ import br.edu.ifba.inf011.model.composite.Component;
 
 public class RepeatAllMode extends PlayerModeIteratorAbstract{
 	
-	
+	//implementação concreta da classe abstrata iterator
 	
 	
 	public RepeatAllMode(List<Component> components) {

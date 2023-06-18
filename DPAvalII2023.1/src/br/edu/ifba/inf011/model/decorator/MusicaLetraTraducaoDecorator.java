@@ -7,7 +7,7 @@ import br.edu.ifba.inf011.model.Musica;
 import br.edu.ifba.inf011.model.resources.ResourceLoader;
 
 public class MusicaLetraTraducaoDecorator extends MusicaDecorator{
-	
+	//parte concreta do decorator
 	private List<String> notas;
 	private List<String> traducao;
 	

@@ -9,7 +9,8 @@ import br.edu.ifba.inf011.model.PlayerMode;
 import br.edu.ifba.inf011.model.composite.Component;
 
 public class ConcretePlayerModeColleciton implements PlayerModeCollection{
-	
+	//coleção para os iteratos que sera usada na classe
+	//player versão concreta
 	private Map<PlayerMode, PlayerModeIteratorAbstract> mapaModos; 
 	private List<Component> lista; 
 	private PlayerModeIteratorAbstract modo;
