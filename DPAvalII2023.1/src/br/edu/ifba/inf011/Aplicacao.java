@@ -37,9 +37,13 @@ public class Aplicacao{
 		Musica musica =  new MusicaLetraDecorator(new MusicaNotas("Lullaby"));
 		Musica musica2 = new MusicaTraducaoDecorator(new MusicaNotas("GodSaveTheQueen"));
 		Musica musica3 = new MusicaLetraDecorator(new MusicaNotas("AndreaDorea"));
+		Playlist playlist = new Playlist("playlist teste");
+		playlist.insert(musica3);
+		playlist.insert(musica);
 		player.insert(musica);
 		player.insert(musica2);
 		player.insert(musica3);
+		player.insert(playlist);
 		int count = 0;
 		player.setMode(PlayerMode.PlayerAll);
 		while(!player.temProximo() && count < 30) {
@@ -47,6 +51,7 @@ public class Aplicacao{
 			System.out.println(count);
 			count++;
 		}
+		player.setMode(PlayerMode.RandomMode);
 		//System.out.println(player.proximo());
 		//System.out.println(player.proximo());
 	}

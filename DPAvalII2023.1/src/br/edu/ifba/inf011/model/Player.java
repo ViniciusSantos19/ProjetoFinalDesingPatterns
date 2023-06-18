@@ -13,6 +13,7 @@ import br.edu.ifba.inf011.model.observer.Subject;
 public class Player implements Subject{
 	// Subject do padrao de projeto observer
 	//também possui um iterator
+	private PlayerModeLogger logger;
 	private List<PlayerModeObserver> observadores;
 	private PlayerMode mode = PlayerMode.PlayerAll;
 	private PlayerModeIteratorAbstract modo;
@@ -23,6 +24,8 @@ public class Player implements Subject{
 		this.playerModeCollection = new ConcretePlayerModeColleciton();
 		this.adicionarObservavel(playerModeCollection);;
 		this.modo = playerModeCollection.getIterator();
+		this.logger = new PlayerModeLogger();
+		this.adicionarObservavel(logger);
 		this.reset();
 	}
 	
